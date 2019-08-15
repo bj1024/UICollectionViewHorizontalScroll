@@ -21,13 +21,14 @@ class ViewController: UIViewController {
 
     collectionView.delegate = self
     collectionView.dataSource = self
+    collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
   }
 }
 
 extension ViewController: UICollectionViewDelegate {
 
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    print("scrollViewDidScroll \(collectionView.position)")
+//    print("scrollViewDidScroll \(collectionView.position)")
 
   }
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

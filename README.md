@@ -47,7 +47,6 @@ Set the following properties in the prepar function.
   }
 ```
 
-
 ## CollectionView storyboard property
 
 Layout : Custom
