@@ -23,8 +23,8 @@ class ViewController: UIViewController {
     collectionView.dataSource = self
     collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
 
-    collectionView.layer.borderColor = UIColor.orange.cgColor
-    collectionView.layer.borderWidth = 1
+//    collectionView.layer.borderColor = UIColor.orange.cgColor
+//    collectionView.layer.borderWidth = 1
     //    autoScroll()
   }
 
@@ -35,15 +35,6 @@ class ViewController: UIViewController {
   }
 
   func autoScroll() {
-    //    self.collectionView.la
-    //
-    // self.collectionView.line
-    //    UIView.animate(withDuration: 3){
-    //      self.collectionView.contentOffset.x = self.collectionView.bounds.width * 3
-    ////      self.collectionView.contentOffset.x = self.collectionView.bounds.width * CGFloat(self.images.count)
-    ////      self.collectionView.contentOffset.x = 0
-    //
-    //    }
 
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
       self.collectionView.contentOffset.x += self.scrollDiff
