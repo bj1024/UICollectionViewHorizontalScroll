@@ -6,7 +6,7 @@ import UIKit
 
 class ViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
-
+  var scrollDiff: CGFloat = 1
   let images: [UIImage] = [
     UIImage(named: "image00")!,
     UIImage(named: "image01")!,
@@ -22,20 +22,51 @@ class ViewController: UIViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
     collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
+
+    collectionView.layer.borderColor = UIColor.orange.cgColor
+    collectionView.layer.borderWidth = 1
+    //    autoScroll()
+  }
+
+  @objc
+  func injected() {
+    print("I've been injected: \(self)")
+//    autoScroll()
+  }
+
+  func autoScroll() {
+    //    self.collectionView.la
+    //
+    // self.collectionView.line
+    //    UIView.animate(withDuration: 3){
+    //      self.collectionView.contentOffset.x = self.collectionView.bounds.width * 3
+    ////      self.collectionView.contentOffset.x = self.collectionView.bounds.width * CGFloat(self.images.count)
+    ////      self.collectionView.contentOffset.x = 0
+    //
+    //    }
+
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+      self.collectionView.contentOffset.x += self.scrollDiff
+      if self.collectionView.contentOffset.x > self.collectionView.bounds.width * CGFloat(self.images.count - 1) {
+        self.scrollDiff = -1
+      }
+      else if self.collectionView.contentOffset.x < 0 {
+        self.scrollDiff = 1
+      }
+      self.autoScroll()
+    }
   }
 }
 
 extension ViewController: UICollectionViewDelegate {
-
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//    print("scrollViewDidScroll \(collectionView.position)")
-
+    //    print("scrollViewDidScroll \(collectionView.position)")
   }
+
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     print("willDisplay \(indexPath)")
   }
 }
-
 
 extension ViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -50,9 +81,9 @@ extension ViewController: UICollectionViewDataSource {
     let image = images[indexPath.row]
 
     cell.labelTitle.text = "\(indexPath.row + 1)"
-//    let screenScale = UIScreen.main.scale
-//    let imgSize = CGSize(width: cell.imageView.bounds.width * screenScale,
-//                         height: cell.imageView.bounds.height * screenScale)
+    //    let screenScale = UIScreen.main.scale
+    //    let imgSize = CGSize(width: cell.imageView.bounds.width * screenScale,
+    //                         height: cell.imageView.bounds.height * screenScale)
 
     cell.imageView.image = image
 
